@@ -1,32 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Conversororionline by ronaldsantos63</title>
+    <meta name="viewport" content="width=640">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>ConversorOrionline by ronaldsantos63</title>
   </head>
+
   <body>
-    <div class="wrapper">
+    <a id="forkme_banner" href="https://github.com/ronaldsantos63/ConversorOrionline">View on GitHub</a>
+    <div class="shell">
+
       <header>
-        <h1>Conversororionline</h1>
-        <p>Conversor de Dados de um Sistema para outro</p>
-        <p class="view"><a href="https://github.com/ronaldsantos63/ConversorOrionline">View the Project on GitHub <small>ronaldsantos63/ConversorOrionline</small></a></p>
-        <ul>
-          <li><a href="https://github.com/ronaldsantos63/ConversorOrionline/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ronaldsantos63/ConversorOrionline/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ronaldsantos63/ConversorOrionline">View On <strong>GitHub</strong></a></li>
-        </ul>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>ConversorOrionline</h1>
+            <h2>Conversor de Dados de um Sistema para outro</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
       </header>
-      <section>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/ronaldsantos63/ConversorOrionline/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/ronaldsantos63/ConversorOrionline/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
         <h1>
 <a id="conversororionline" class="anchor" href="#conversororionline" aria-hidden="true"><span class="octicon octicon-link"></span></a>ConversorOrionline</h1>
 
@@ -44,12 +63,21 @@ mais o código é aberto para quem precisar fazer algo parecido!</p>
 
 <p>Autor: <a href="@ronaldsantos63">ronald</a></p>
       </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/ronaldsantos63">ronaldsantos63</a> can be found on <a href="https://github.com/ronaldsantos63/ConversorOrionline">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/ronaldsantos63">ronaldsantos63</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
