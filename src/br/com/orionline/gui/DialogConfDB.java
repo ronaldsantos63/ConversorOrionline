@@ -6,6 +6,8 @@
 package br.com.orionline.gui;
 
 import br.com.orionline.util.LoadProperties;
+import com.alee.extended.filechooser.WebDirectoryChooser;
+import com.alee.extended.filechooser.WebPathField;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,7 +24,7 @@ import org.apache.log4j.Logger;
 public class DialogConfDB extends javax.swing.JDialog {
 
     private static final Logger logger = Logger.getLogger(DialogConfDB.class);
-    JFileChooser fc;
+    WebDirectoryChooser fc;
     Properties dbProp = new Properties();
     LoadProperties props = new LoadProperties();
 
@@ -177,12 +179,21 @@ public class DialogConfDB extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnAbrirDataBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirDataBaseActionPerformed
-        fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int returnValue = fc.showOpenDialog(DialogConfDB.this);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File dirDB = fc.getSelectedFile();
-            lbCaminhoDB.setText(dirDB.getPath());
+        fc = new WebDirectoryChooser(this);
+        fc.setDrawWatermark(true);
+        fc.setModal(true);
+        fc.setRound(5);
+        fc.setShadeWidth(10);
+        fc.setShowMaximizeButton(false);
+        fc.setShowMinimizeButton(false);
+        fc.setTitle("Selecione a pasta que contém os DBF's");
+        fc.setEmptyTitleText("Testando EmptyTitleText");
+        int result = fc.showDialog();
+        if ( result == WebDirectoryChooser.OK_OPTION){
+            File dirDB = fc.getSelectedDirectory();
+            if (dirDB.exists()) {
+                lbCaminhoDB.setText(dirDB.getPath());
+            }
         }
         lbCaminhoDB.setCaretPosition(lbCaminhoDB.getDocument().getLength());
     }//GEN-LAST:event_btnAbrirDataBaseActionPerformed
