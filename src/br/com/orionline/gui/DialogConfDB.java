@@ -7,13 +7,12 @@ package br.com.orionline.gui;
 
 import br.com.orionline.util.LoadProperties;
 import com.alee.extended.filechooser.WebDirectoryChooser;
-import com.alee.extended.filechooser.WebPathField;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-import javax.swing.JFileChooser;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
@@ -186,6 +185,7 @@ public class DialogConfDB extends javax.swing.JDialog {
         fc.setShadeWidth(10);
         fc.setShowMaximizeButton(false);
         fc.setShowMinimizeButton(false);
+        fc.setWatermark(new ImageIcon(getClass().getResource("/br/com/orionline/imagens/logo.png")));
         fc.setTitle("Selecione a pasta que contém os DBF's");
         fc.setEmptyTitleText("Testando EmptyTitleText");
         int result = fc.showDialog();
