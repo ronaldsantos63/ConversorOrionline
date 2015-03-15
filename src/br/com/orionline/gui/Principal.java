@@ -31,8 +31,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
@@ -103,7 +107,6 @@ public class Principal extends javax.swing.JFrame {
         checkContaReceber = new javax.swing.JCheckBox();
         checkImpFedProd = new javax.swing.JCheckBox();
         checkImpostoFederal = new javax.swing.JCheckBox();
-        checkBarrasRelacionadas = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
         btnSobre = new javax.swing.JButton();
@@ -173,8 +176,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        checkBarrasRelacionadas.setText("Barras Relacionadas");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -183,10 +184,8 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(checkContaReceber)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(checkImpostoFederal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(checkImpFedProd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(checkTodos))
@@ -197,20 +196,20 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkCodBarras)
-                            .addComponent(checkSecao))
+                            .addComponent(checkContaReceber))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkEstoque)
+                            .addComponent(checkSecao))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkFornecedor)
                             .addComponent(checkGrupo))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkSubGrupo)
-                            .addComponent(checkFornecedor))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkItensFornecedor)
-                            .addComponent(checkBarrasRelacionadas))
-                        .addGap(0, 52, Short.MAX_VALUE)))
+                            .addComponent(checkItensFornecedor))
+                        .addGap(0, 60, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -222,14 +221,16 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(checkCodBarras)
                     .addComponent(checkEstoque)
                     .addComponent(checkFornecedor)
-                    .addComponent(checkBarrasRelacionadas))
+                    .addComponent(checkItensFornecedor))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkSubGrupo)
-                    .addComponent(checkItensFornecedor)
-                    .addComponent(checkClientes)
-                    .addComponent(checkSecao)
-                    .addComponent(checkGrupo))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(checkSubGrupo)
+                        .addComponent(checkClientes)
+                        .addComponent(checkGrupo))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(checkSecao)
+                        .addComponent(checkContaReceber)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
@@ -238,7 +239,6 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(checkContaReceber)
                             .addComponent(checkImpostoFederal)
                             .addComponent(checkImpFedProd))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -367,7 +367,6 @@ public class Principal extends javax.swing.JFrame {
             checkContaReceber.setSelected(true);
             checkImpFedProd.setSelected(true);
             checkImpostoFederal.setSelected(true);
-            checkBarrasRelacionadas.setSelected(true);
         } else {
             checkCodBarras.setSelected(!true);
             checkEstoque.setSelected(!true);
@@ -381,7 +380,6 @@ public class Principal extends javax.swing.JFrame {
             checkContaReceber.setSelected(!true);
             checkImpFedProd.setSelected(!true);
             checkImpostoFederal.setSelected(!true);
-            checkBarrasRelacionadas.setSelected(!true);
         }
     }//GEN-LAST:event_checkTodosActionPerformed
 
@@ -394,8 +392,7 @@ public class Principal extends javax.swing.JFrame {
         if (!checkCodBarras.isSelected() && !checkEstoque.isSelected() && !checkFornecedor.isSelected()
                 && !checkGrupo.isSelected() && !checkItensFornecedor.isSelected() && !checkProdutos.isSelected()
                 && !checkSecao.isSelected() && !checkSubGrupo.isSelected() && !checkClientes.isSelected()
-                && !checkContaReceber.isSelected() && !checkImpFedProd.isSelected() && !checkImpostoFederal.isSelected()
-                && !checkBarrasRelacionadas.isSelected()) {
+                && !checkContaReceber.isSelected() && !checkImpFedProd.isSelected() && !checkImpostoFederal.isSelected()) {
             JOptionPane.showMessageDialog(this, "Por favor selecione uma opção!", "Informação", JOptionPane.INFORMATION_MESSAGE);
         } else {
             btnExportar.setEnabled(false);
@@ -414,7 +411,6 @@ public class Principal extends javax.swing.JFrame {
             checkContaReceber.setEnabled(false);
             checkImpFedProd.setEnabled(false);
             checkImpostoFederal.setEnabled(false);
-            checkBarrasRelacionadas.setEnabled(false);
             checkTodos.setEnabled(false);
             new ProcessarOpcoesSelecionadas().start();
         }
@@ -453,7 +449,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSobre;
-    private javax.swing.JCheckBox checkBarrasRelacionadas;
     private javax.swing.JCheckBox checkClientes;
     private javax.swing.JCheckBox checkCodBarras;
     private javax.swing.JCheckBox checkContaReceber;
@@ -525,6 +520,8 @@ public class Principal extends javax.swing.JFrame {
                         th.start();
                         String linha;
                         
+                        List<String> listCodigoBarra = new ArrayList<>();
+                        
                         do {
                             regAtual += 1;
                             System.out.println("Registro: " + regAtual);
@@ -533,8 +530,8 @@ public class Principal extends javax.swing.JFrame {
                             prodAuxArq = new ProdutoAUX();
                             System.out.println("Campo02");
                             codigo = cx.rs.getString("codigo");
-                            System.out.println("cdprod: " + IncluirZeros(codigo.trim().replaceAll("[\\s+]", ""), 14));
-                            System.out.println("cdprod tamanho: " + IncluirZeros(codigo.trim().replaceAll("[\\s+]", ""), 14).length());
+//                            System.out.println("cdprod: " + IncluirZeros(codigo.trim().replaceAll("[\\s+]", ""), 14));
+//                            System.out.println("cdprod tamanho: " + IncluirZeros(codigo.trim().replaceAll("[\\s+]", ""), 14).length());
                             prodAuxArq.setProcod(IncluirZeros(codigo.trim().replaceAll("[\\s+]", ""), 14));
                             System.out.println("Campo03");
                             barras = cx.rs.getString("barras");
@@ -553,11 +550,90 @@ public class Principal extends javax.swing.JFrame {
                             System.out.println("Campo07 - Gravando ultimo codigo processado com sucesso!");
                             ultimoCodigo = codigo;
                             
+                            listCodigoBarra.add(barras);
+                            
                         } while (cx.rs.next());
-                        logger.debug("Arquivo com codigo de barras gravado com sucesso!");
+                        logger.debug("Checando barras relacionadas...!");
                         total = 0;
                         regAtual = 0;
-                        lbProcesso.setText(null);
+                        lbProcesso.setText("Codigo de barras gerado com sucesso!");
+                        sleep(5000);
+                        //Verificando se existe barras relacionadas
+                        lbProcesso.setText("Checando barras relacionadas...");
+                        sleep(5000);
+                        FileWriter arqBarrasRepetidos;
+                        cx.desconecta();
+                        cx.conexao();
+                        cx2.conexao();
+                        
+                        cx.executaQuery("select ltrim(cdprod) as codigo, ltrim(codbarra) as barras, multiplos from barrarel");
+                        cx2.executaQuery("select count(*) from barrarel");
+                        
+                        cx2.rs.first();
+                        total = cx2.rs.getInt(1);
+                        cx2.desconecta();
+                        
+                        Double multiplos;
+                        Set<String> barrasRepetidos = new HashSet<>();
+                        
+                        if ( total > 0 ){
+                            logger.debug("Foi encontrado: " + total + " registros de barras relacionadas");
+                            arqBarrasRepetidos = new FileWriter(pasta+"/codigo_de_barras_repetidos.txt", true);
+                            cx.rs.first();
+                            lbProcesso.setText("Foi encontrado: " + total + " registros de barras relacionadas");
+                            sleep(5000);
+                            logger.debug("Processando barras relacionadas...");
+                            lbProcesso.setText("Processando barras relacionadas...");
+                            do {
+                                
+                                regAtual += 1;
+                                
+                                prodAuxArq = new ProdutoAUX();
+                                barras = cx.rs.getString("barras");
+                                if ( ! listCodigoBarra.contains(barras)){
+                                    codigo = cx.rs.getString("codigo");
+                                    prodAuxArq.setProcod(IncluirZeros(codigo.trim().replaceAll("[\\s+]", ""), 14));
+                                    prodAuxArq.setCodAux(IncluirZeros(barras.trim().replaceAll("[\\s+]", ""), 20));
+                                    multiplos = cx.rs.getDouble("multiplos");
+                                    if (multiplos < 1) {
+                                        multiplos = 1.0;
+                                    }
+                                    prodAuxArq.setFator(multiplos);
+
+                                    linha = String.format(Locale.US, "%14.14s%20.20s%13.2f\n",
+                                            prodAuxArq.getProcod(),
+                                            prodAuxArq.getCodAux(), prodAuxArq.getFator());
+                                    arquivo.write(linha);
+                                    arquivo.flush();
+                                    ultimoCodigo = codigo;
+
+                                    listCodigoBarra.add(barras);
+                                }else{
+                                    barrasRepetidos.add(barras+"\n");
+                                }
+                                
+                            } while (cx.rs.next());
+                            logger.debug("Finalizado o processo das barras relacionadas");
+                            logger.debug("Gravando barras duplicadas...");
+                            Iterator<String> barrasDupIterator = barrasRepetidos.iterator();
+                            while ( barrasDupIterator.hasNext() ){
+                                String i = barrasDupIterator.next();
+                                arqBarrasRepetidos.write(i);
+                                arqBarrasRepetidos.flush();
+                            }
+                            cx.desconecta();
+                            total = 0;
+                            regAtual = 0;
+                            lbProcesso.setText("Barras relacionadas processado com sucesso!");
+                            
+                        }else{
+                            cx.desconecta();
+                            total = 0;
+                            regAtual = 0;
+                            lbProcesso.setText("Não foi encontrado nenhuma barra relacionada!");
+                            sleep(500);
+                        }
+                        
                     } catch (SQLException ex) {
                         if ( ultimoCodigo == null ){
                             logger.error("Erro ao processar codigo de barras", ex);
@@ -585,8 +661,9 @@ public class Principal extends javax.swing.JFrame {
                                 new ErrorInfo("OrionLine Automação Comercial",
                                         "Erro no processo nos codigos auxiliares do produto",
                                         "<html><h1><center>SQLException: </center></h1><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                    } catch (InterruptedException ex) {
+                        java.util.logging.Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    cx.desconecta();
                     logger.debug("Finalizado processamento do codigo de barras");
                 } catch (IOException ex) {
                     JXErrorPane.showDialog(Principal.this,
@@ -613,111 +690,6 @@ public class Principal extends javax.swing.JFrame {
                                         + "<b></p></body></html>", "Erro", ex, Level.ALL, null));
                     }
                 }
-            }
-            if ( checkBarrasRelacionadas.isSelected() ){
-                //Variaveis
-                String ultimoCodigo = null;
-                String codigo;
-                String barras;
-                try {
-                    logger.debug("Processando barras relacionadas");
-                    
-                    FileWriter arquivo;
-                    arquivo = null;
-                    
-                    File pasta = new File("arquivos");
-                    if ( !pasta.exists() ){
-                        pasta.mkdir();
-                    }
-                    
-                    File arqBarrasRelacionadas = new File(pasta+"/BarrasRelacionadas.sql");
-                    if ( arqBarrasRelacionadas.exists() ){
-                        arqBarrasRelacionadas.delete();
-                    }
-                    
-                    arquivo = new FileWriter(arqBarrasRelacionadas, true);
-                    
-                    cx.conexao();
-                    cx2.conexao();
-                    
-                    cx.executaQuery("select * from barrarel");
-                    cx2.executaQuery("select count(*) from barrarel");
-                    cx.rs.first();
-                    cx2.rs.first();
-                    total = cx2.rs.getInt(0);
-                    cx2.desconecta();
-                    
-                    lbProcesso.setText("Processando cod Barras...");
-                    ProcessarProgresso th = new ProcessarProgresso();
-                    th.start();
-                    String linha;
-                    
-                    do {
-                        
-                        regAtual += 1;
-                        
-                        barrasArq = new BarrasRelacionadas();
-                        codigo = cx.rs.getString("cdprod");
-                        barrasArq.setProcod(IncluirZeros(codigo.replaceAll("[\\s+]", ""), 14));
-                        barras = cx.rs.getString("codbarra");
-                        barrasArq.setCodAux(IncluirZeros(barras.replaceAll("[\\s+]", ""), 20));
-                        barrasArq.setFator(cx.rs.getDouble("multiplos"));
-                        
-                        linha = String.format(Locale.US, "insert into "
-                                + "procodaux(procod, procodaux, fator) "
-                                + "values ('%14.14s','%20.20s', %13.2f);\n",
-                                barrasArq.getProcod(), barrasArq.getCodAux(), barrasArq.getFator());
-                        arquivo.write(linha);
-                        arquivo.flush();
-                        ultimoCodigo = codigo;
-                    } while (cx.rs.next());
-                    logger.debug("Script das barras relacionadas gerado com sucesso!");
-                    total = 0;
-                    regAtual = 0;
-                    lbProcesso.setText(null);
-                } catch (IOException ex) {
-                    JXErrorPane.showDialog(Principal.this,
-                            new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo das Barras "
-                                    + "Relacionadas",
-                                    "<html><body style=background-image: "
-                                    + "url('br/com/orionline/imagens/logo.png')>"
-                                    + "<h1 style=><center>IOException: </center></h1>"
-                                    + "<p><b>" + ex.fillInStackTrace()
-                                    + "<b></p></body></html>", "Erro", ex, Level.ALL, null));
-                } catch (SQLException ex) {
-                    if (ultimoCodigo == null) {
-                        logger.error("Erro ao processar codigo de barras", ex);
-                        JXErrorPane.showDialog(Principal.this,
-                                new ErrorInfo("OrionLine Automação Comercial",
-                                        "Erro no processo das barras "
-                                        + "Relacionadas\n"
-                                        + "Ultimo codigo: " + ultimoCodigo,
-                                        "<html><h1><center>SQLException: </center></h1><p><b>" + ex.fillInStackTrace()
-                                        + "<b></p></html>", "Erro", ex, Level.ALL, null));
-                    } else {
-                        JXErrorPane.showDialog(Principal.this,
-                                new ErrorInfo("OrionLine Automação Comercial",
-                                        "Erro no processo das Barras "
-                                        + "Relacionadas",
-                                        "<html><body style=background-image: "
-                                        + "url('br/com/orionline/imagens/logo.png')>"
-                                        + "<h1 style=><center>SQLException: </center></h1>"
-                                        + "<p><b>" + ex.fillInStackTrace()
-                                        + "<b></p></body></html>", "Erro", ex, Level.ALL, null));
-                    }
-                }catch ( NumberFormatException ex ){
-                    JXErrorPane.showDialog(Principal.this,
-                            new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo das Barras "
-                                    + "Relacionadas",
-                                    "<html><body style=background-image: "
-                                    + "url('br/com/orionline/imagens/logo.png')>"
-                                    + "<h1 style=><center>NumberException: </center></h1>"
-                                    + "<p><b>" + ex.fillInStackTrace()
-                                    + "<b></p></body></html>", "Erro", ex, Level.ALL, null));
-                }
-                
             }
             if (checkEstoque.isSelected()) {
                 logger.debug("Processando estoque...");

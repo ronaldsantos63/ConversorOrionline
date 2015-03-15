@@ -102,10 +102,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="checkContaReceber" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="checkImpostoFederal" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="checkImpFedProd" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="checkTodos" min="-2" max="-2" attributes="0"/>
@@ -118,24 +116,24 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="checkCodBarras" min="-2" max="-2" attributes="0"/>
-                                  <Component id="checkSecao" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkContaReceber" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="checkEstoque" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkSecao" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="checkFornecedor" min="-2" max="-2" attributes="0"/>
                                   <Component id="checkGrupo" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="checkSubGrupo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="checkFornecedor" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="checkItensFornecedor" min="-2" max="-2" attributes="0"/>
-                                  <Component id="checkBarrasRelacionadas" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -151,15 +149,19 @@
                           <Component id="checkCodBarras" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="checkEstoque" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="checkFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkBarrasRelacionadas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkItensFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="checkSubGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkItensFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkClientes" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkSecao" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="checkSubGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="checkClientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="checkGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="checkSecao" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="checkContaReceber" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -170,7 +172,6 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="checkContaReceber" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="checkImpostoFederal" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="checkImpFedProd" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -294,11 +295,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkImpostoFederalActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="checkBarrasRelacionadas">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Barras Relacionadas"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
