@@ -106,6 +106,8 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="checkImpFedProd" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="checkSecaoGeral" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="checkTodos" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -166,7 +168,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace pref="33" max="32767" attributes="0"/>
-                              <Component id="checkTodos" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="checkTodos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkSecaoGeral" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -294,6 +299,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkImpostoFederalActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="checkSecaoGeral">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Se&#xe7;&#xe3;o Geral"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkSecaoGeralActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

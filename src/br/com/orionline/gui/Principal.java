@@ -107,6 +107,7 @@ public class Principal extends javax.swing.JFrame {
         checkContaReceber = new javax.swing.JCheckBox();
         checkImpFedProd = new javax.swing.JCheckBox();
         checkImpostoFederal = new javax.swing.JCheckBox();
+        checkSecaoGeral = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
         btnSobre = new javax.swing.JButton();
@@ -176,6 +177,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        checkSecaoGeral.setText("Seção Geral");
+        checkSecaoGeral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkSecaoGeralActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -188,6 +196,8 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(checkImpFedProd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(checkSecaoGeral)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(checkTodos))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +244,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(checkTodos)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(checkTodos)
+                            .addComponent(checkSecaoGeral))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -360,8 +372,10 @@ public class Principal extends javax.swing.JFrame {
             checkFornecedor.setSelected(true);
             checkGrupo.setSelected(true);
             checkItensFornecedor.setSelected(true);
-            checkProdutos.setSelected(true);
-            checkSecao.setSelected(true);
+            if ( !checkSecaoGeral.isSelected() ){
+                checkProdutos.setSelected(true);
+                checkSecao.setSelected(true);
+            }
             checkSubGrupo.setSelected(true);
             checkClientes.setSelected(true);
             checkContaReceber.setSelected(true);
@@ -373,8 +387,10 @@ public class Principal extends javax.swing.JFrame {
             checkFornecedor.setSelected(!true);
             checkGrupo.setSelected(!true);
             checkItensFornecedor.setSelected(!true);
-            checkProdutos.setSelected(!true);
-            checkSecao.setSelected(!true);
+            if (!checkSecaoGeral.isSelected()) {
+                checkProdutos.setSelected(!true);
+                checkSecao.setSelected(!true);
+            }
             checkSubGrupo.setSelected(!true);
             checkClientes.setSelected(!true);
             checkContaReceber.setSelected(!true);
@@ -412,6 +428,7 @@ public class Principal extends javax.swing.JFrame {
             checkImpFedProd.setEnabled(false);
             checkImpostoFederal.setEnabled(false);
             checkTodos.setEnabled(false);
+            checkSecaoGeral.setEnabled(false);
             new ProcessarOpcoesSelecionadas().start();
         }
     }//GEN-LAST:event_btnExportarActionPerformed
@@ -430,6 +447,18 @@ public class Principal extends javax.swing.JFrame {
     private void checkImpostoFederalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkImpostoFederalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkImpostoFederalActionPerformed
+
+    private void checkSecaoGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSecaoGeralActionPerformed
+        if ( checkSecaoGeral.isSelected() ){
+            checkSecao.setSelected(false);
+            checkSecao.setEnabled(false);
+            checkProdutos.setSelected(true);
+        }else{
+            checkSecao.setSelected(false);
+            checkSecao.setEnabled(!false);
+            checkProdutos.setSelected(!true);
+        }
+    }//GEN-LAST:event_checkSecaoGeralActionPerformed
 
     public String IncluirZeros(String texto, int tamMax){
         int max;
@@ -460,6 +489,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkItensFornecedor;
     private javax.swing.JCheckBox checkProdutos;
     private javax.swing.JCheckBox checkSecao;
+    private javax.swing.JCheckBox checkSecaoGeral;
     private javax.swing.JCheckBox checkSubGrupo;
     private javax.swing.JCheckBox checkTodos;
     private javax.swing.JPanel jPanel1;
@@ -769,7 +799,7 @@ public class Principal extends javax.swing.JFrame {
                     logger.error("Erro ao processar Estoque", ex);
                     JXErrorPane.showDialog(Principal.this,
                             new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo do Estoque", "<html><center>SQLException: </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                    "Erro no processo do Estoque", "<html><center>SQLException: </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -926,7 +956,7 @@ public class Principal extends javax.swing.JFrame {
                     logger.error("Erro no processo do Fornecedor", ex);
                     JXErrorPane.showDialog(Principal.this,
                             new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo do Fornecedor", "<html><center>SQLException: </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                    "Erro no processo do Fornecedor", "<html><center>SQLException: </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                 }
                 cx.desconecta();
                 logger.debug("Processo do Fornecedor finalizado!");
@@ -980,7 +1010,7 @@ public class Principal extends javax.swing.JFrame {
                     logger.error("Erro no proceso do Itens do Fornecedor", ex);
                     JXErrorPane.showDialog(Principal.this,
                             new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo nos itens dos Fornecedores", "<html><center>SQLException: </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                    "Erro no processo nos itens dos Fornecedores", "<html><center>SQLException: </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                 }
                 cx.desconecta();
                 cx3.desconecta();
@@ -1039,15 +1069,19 @@ public class Principal extends javax.swing.JFrame {
                         prodArq.setProcod(cdprod);
                         System.out.println("Campo 2");
                         descricao = cx.rs.getString("descricao");
-                        prodArq.setDescricao(descricao
+                        prodArq.setDescricao(descricao.toUpperCase()
                                 .replaceAll("[ÁÀÂÃáàâã]", "A").replaceAll("[ÉÈÊéèê]", "E").replaceAll("[ÍÌÎíìî]", "I")
                                 .replaceAll("[ÓÒÔÕóòôõ]", "O").replaceAll("ÚÙÛúùû", "U").replaceAll("Çç", "C"));
                         System.out.println("Campo 3");
-                        prodArq.setDescricaoReduzidsa(cx.rs.getString("descpdv")
+                        prodArq.setDescricaoReduzidsa(cx.rs.getString("descpdv").toUpperCase()
                                 .replaceAll("[ÁÀÂÃáàâã]", "A").replaceAll("[ÉÈÊéèê]", "E").replaceAll("[ÍÌÎíìî]", "I")
                                 .replaceAll("[ÓÒÔÕóòôõ]", "O").replaceAll("ÚÙÛúùû", "U").replaceAll("Çç", "C"));
                         System.out.println("Campo 4");
-                        prodArq.setCodSecao(cx.rs.getInt("grupo"));
+                        if ( checkSecaoGeral.isSelected() ){
+                            prodArq.setCodSecao(01);
+                        }else{
+                            prodArq.setCodSecao(cx.rs.getInt("grupo"));
+                        }
                         System.out.println("Campo 5");
                         prodArq.setPagaComissao("N");
                         System.out.println("Campo 6");
@@ -1272,6 +1306,20 @@ public class Principal extends javax.swing.JFrame {
                     } while (cx.rs.next());
                     logger.debug("Gravando Produto em arquivo...");
                     new GravaTexto().geraProduto(produtoList);
+                    if ( checkSecaoGeral.isSelected() ){
+                        try( FileWriter arqSecao = new FileWriter("arquivos/SYSPSEC.txt")){
+                            String linha = String.format("%01d%-30.30s\n", 01, "GERAL");
+                            arqSecao.write(linha);
+                        } catch (IOException ex) {
+                            logger.error("Erro ao criar aquivo com a seção geral");
+                            JXErrorPane.showDialog(Principal.this,
+                                    new ErrorInfo("OrionLine Automação Comercial",
+                                            "Erro ao criar arquivo com a seção geral",
+                                            "<html><head></head><body><h1 color: red><center>IOException: </center></h1><p><b>"
+                                            + ex.fillInStackTrace() + "<b></p></body></html>",
+                                            "Erro", ex, Level.ALL, null));
+                        }
+                    }
                     logger.debug("Produto salvo em arquivo com sucesso!");
                     total = 0;
                     regAtual = 0;
@@ -1284,7 +1332,7 @@ public class Principal extends javax.swing.JFrame {
                                             + "\nUltimo codigo: " + ultimoCodigoProduto 
                                             + "\nUltima Descrição: " + ultimaDescricao, 
                                     "<html><head></head><body><h1 color: red><center>SQLException: </center></h1><p><b>" 
-                                            + ex.toString() + "<b></p></body></html>", 
+                                            + ex.fillInStackTrace() + "<b></p></body></html>", 
                                     "Erro", ex, Level.ALL, null));
                 }
                 cx.desconecta();
@@ -1324,7 +1372,7 @@ public class Principal extends javax.swing.JFrame {
                     logger.error("Erro no processo da Seção", ex);
                     JXErrorPane.showDialog(Principal.this,
                             new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo da Seção", "<html><center>SQLException: </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                    "Erro no processo da Seção", "<html><center>SQLException: </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                 }
                 cx.desconecta();
                 logger.debug("Finalizado o processo da Seção!");
@@ -1882,7 +1930,7 @@ public class Principal extends javax.swing.JFrame {
                     logger.error("Erro no processo do Cliente", ex);
                     JXErrorPane.showDialog(Principal.this,
                             new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo dos Clientes", "<html><center>SQLException: </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                    "Erro no processo dos Clientes", "<html><center>SQLException: </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                 }
                 cx.desconecta();
                 logger.debug("Finalizado o processo do Cliente!");
@@ -1942,7 +1990,7 @@ public class Principal extends javax.swing.JFrame {
                     logger.error("Erro no processo do Imposto Federal", ex);
                     JXErrorPane.showDialog(Principal.this,
                             new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro no processo do Imposto Federal", "<html><center>SQLException: </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                    "Erro no processo do Imposto Federal", "<html><center>SQLException: </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                 }
                 regAtual = 0;
                 total = 0;
@@ -2171,7 +2219,7 @@ public class Principal extends javax.swing.JFrame {
                         logger.error("Erro no Processo do Contas a receber", ex);
                         JXErrorPane.showDialog(Principal.this,
                                 new ErrorInfo("OrionLine Automação Comercial",
-                                        "Erro no processo do Contas a Receber", "<html><center>SQLWaring: </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                        "Erro no processo do Contas a Receber", "<html><center>SQLWaring: </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                     } catch (NumberFormatException ex2) {
                         logger.error("Erro no Processo do Contas a Receber", ex2);
                         JXErrorPane.showDialog(Principal.this,
@@ -2181,14 +2229,14 @@ public class Principal extends javax.swing.JFrame {
                         logger.error("Erro no Processo do Contas a receber", ex);
                         JXErrorPane.showDialog(Principal.this,
                                 new ErrorInfo("OrionLine Automação Comercial",
-                                        "Erro no processo do Contas a Receber", "<html><center>SQLException </center><p><b>" + ex.toString() + "<b></p></html>", "Erro", ex, Level.ALL, null));
+                                        "Erro no processo do Contas a Receber", "<html><center>SQLException </center><p><b>" + ex.fillInStackTrace() + "<b></p></html>", "Erro", ex, Level.ALL, null));
                     }
 
                 } catch (IOException ex) {
                     logger.error("Erro no Processo do Contas a receber", ex);
                     JXErrorPane.showDialog(Principal.this,
                             new ErrorInfo("OrionLine Automação Comercial",
-                                    "Erro ao Criar arquivo SYSPCRC.txt", "<html><b>" + ex.toString() + "<b></html>", "Erro", ex, Level.ALL, null));
+                                    "Erro ao Criar arquivo SYSPCRC.txt", "<html><b>" + ex.fillInStackTrace() + "<b></html>", "Erro", ex, Level.ALL, null));
                     logger.error("Erro ao abrir pasta onde os arquivos foram salvos!", ex);
                 }
             }
@@ -2205,7 +2253,7 @@ public class Principal extends javax.swing.JFrame {
             } catch (IOException ex) {
                 JXErrorPane.showDialog(Principal.this,
                         new ErrorInfo("OrionLine Automação Comercial",
-                                "Erro ao abri pasta", "<html><b>" + ex.toString() + "<b></html>", "Erro", ex, Level.ALL, null));
+                                "Erro ao abri pasta", "<html><b>" + ex.fillInStackTrace() + "<b></html>", "Erro", ex, Level.ALL, null));
                 logger.error("Erro ao abrir pasta onde os arquivos foram salvos!", ex);
             }
             setCursor(DEFAULT_CURSOR);
@@ -2217,13 +2265,16 @@ public class Principal extends javax.swing.JFrame {
             checkFornecedor.setEnabled(!false);
             checkGrupo.setEnabled(!false);
             checkItensFornecedor.setEnabled(!false);
+            if ( !checkSecaoGeral.isSelected() ){
+                checkSecao.setEnabled(!false);
+            }
             checkProdutos.setEnabled(!false);
-            checkSecao.setEnabled(!false);
             checkSubGrupo.setEnabled(!false);
             checkClientes.setEnabled(!false);
             checkContaReceber.setEnabled(!false);
             checkImpFedProd.setEnabled(!false);
             checkTodos.setEnabled(!false);
+            checkSecaoGeral.setEnabled(true);
             checkImpostoFederal.setEnabled(!false);
 
             checkCodBarras.setSelected(!true);
@@ -2231,8 +2282,10 @@ public class Principal extends javax.swing.JFrame {
             checkFornecedor.setSelected(!true);
             checkGrupo.setSelected(!true);
             checkItensFornecedor.setSelected(!true);
-            checkProdutos.setSelected(!true);
-            checkSecao.setSelected(!true);
+            if ( !checkSecaoGeral.isSelected() ){
+                checkProdutos.setSelected(!true);
+                checkSecao.setSelected(!true);
+            }
             checkSubGrupo.setSelected(!true);
             checkClientes.setSelected(!true);
             checkContaReceber.setSelected(!true);
