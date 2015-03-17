@@ -8,8 +8,6 @@ package br.com.orionline;
 import br.com.orionline.controllers.ConectaBanco;
 import br.com.orionline.gui.DialogConfDB;
 import br.com.orionline.gui.Principal;
-import com.jgoodies.looks.plastic.PlasticLookAndFeel;
-import com.jgoodies.looks.plastic.theme.DarkStar;
 import java.awt.SystemColor;
 import java.io.File;
 import java.sql.SQLException;
