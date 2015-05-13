@@ -1038,6 +1038,7 @@ public class Principal extends javax.swing.JFrame {
                 String genero;
                 String situacao;
                 String descricao;
+                String fracionado;
                 
                 //variavel ajudar a capiturar possíveis erros
                 String ultimoCodigoProduto = null;
@@ -1112,7 +1113,8 @@ public class Principal extends javax.swing.JFrame {
                         }
                         System.out.println("Campo 7");
                         setor = cx.rs.getInt("setor");
-                        if (setor == 1) {
+                        fracionado = cx.rs.getString("variavel");
+                        if ("S".equalsIgnoreCase(fracionado)) {
                             prodArq.setPesoVariavel("S");
                         } else {
                             prodArq.setPesoVariavel("N");
@@ -2087,7 +2089,7 @@ public class Principal extends javax.swing.JFrame {
                                 contrecCab.setPercentualDesconto(0.00);
 
                                 System.out.println("Campo 10 - Criando linha...");
-                                linha1 = String.format(Locale.US, "%1s%-4d%-3d%-3d%-3d%1s%3.4f%3.4f%3.4f\n", contrecCab.getTipo(),
+                                linha1 = String.format(Locale.US, "%1s%4d%3d%3d%3d%1s%3.4f%3.4f%3.4f\n", contrecCab.getTipo(),
                                         contrecCab.getReservado1(), contrecCab.getReservado2(), contrecCab.getReservado3(),
                                         contrecCab.getReservado4(), contrecCab.getTipoJuros(), contrecCab.getPercentualJuros(),
                                         contrecCab.getPercentualMulta(), contrecCab.getPercentualDesconto());
