@@ -29,7 +29,7 @@ public class ConversorOrionLine {
     public ConversorOrionLine() {
     }
 
-    public void load() {
+    public void load() throws SQLException {
         
         //SkyBlue()
         //BrownSugar()
@@ -54,6 +54,10 @@ public class ConversorOrionLine {
         } catch (ClassNotFoundException ex) {
             logger.error("Classe LookAndFeel não encontrada", ex);
         }
+        
+        logger.debug("Analisando arquivo de configuração");
+        verificaProperties();
+        logger.debug("Arquivo de configuração Analisado");
         
         logger.debug("Carregando janela principal...");
         Principal frm = new Principal();
@@ -100,9 +104,6 @@ public class ConversorOrionLine {
      */
     public static void main(String[] args) throws SQLException {
         logger.debug("Inciando aplicação");
-        logger.debug("Analisando arquivo de configuração");
-        new ConversorOrionLine().verificaProperties();
-        logger.debug("Arquivo de configuração Analisado");
         getInstance().load();
         logger.debug("Aplicação carregada com sucesso!");
     }
