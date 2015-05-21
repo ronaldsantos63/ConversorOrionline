@@ -539,7 +539,7 @@ public class Principal extends javax.swing.JFrame {
                     try {
                         cx.conexao();
                         cx2.conexao();
-                        cx.executaQuery("select rtrim(ltrim(cdprod)) as codigo, rtrim(ltrim(codbarra)) as barras from estoque");
+                        cx.executaQuery("select rtrim(ltrim(cdprod)) as codigo, rtrim(ltrim(codbarra)) as barras from estoque where rtrim(ltrim(codbarra)) <> '0' and rtrim(ltrim(codbarra)) <> ''");
                         cx2.executaQuery("select count(*) from estoque");
                         cx.rs.first();
                         cx2.rs.first();
