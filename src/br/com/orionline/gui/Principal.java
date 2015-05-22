@@ -1678,12 +1678,16 @@ public class Principal extends javax.swing.JFrame {
                         }
                         System.out.println("Campo29");
                         estadoCob = cx.rs.getString("estadocob");
-                        if (estado == null) {
-                            cli.setEstadoCobranca(null);
-                        } else {
-                            cli.setEstadoCobranca(estadoCob
-                                    .replaceAll("[ÁÀÂÃáàâã]", "A").replaceAll("[ÉÈÊéèê]", "E").replaceAll("[ÍÌÎíìî]", "I")
-                                    .replaceAll("[ÓÒÔÕóòôõ]", "O").replaceAll("ÚÙÛúùû", "U").replaceAll("Çç", "C"));
+                        try {
+                            if (estado == null) {
+                                cli.setEstadoCobranca("");
+                            } else {
+                                cli.setEstadoCobranca(estadoCob
+                                        .replaceAll("[ÁÀÂÃáàâã]", "A").replaceAll("[ÉÈÊéèê]", "E").replaceAll("[ÍÌÎíìî]", "I")
+                                        .replaceAll("[ÓÒÔÕóòôõ]", "O").replaceAll("ÚÙÛúùû", "U").replaceAll("Çç", "C"));
+                            }
+                        } catch (Exception e) {
+                            cli.setEstadoCobranca("");
                         }
                         System.out.println("Campo30");
                         desconto = cx.rs.getDouble("desconto");
