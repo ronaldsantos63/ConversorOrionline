@@ -6,7 +6,6 @@
 
 package br.com.orionline.controllers;
 
-import br.com.orionline.gui.Principal;
 import br.com.orionline.util.LoadProperties;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
-import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 import org.jdesktop.swingx.JXErrorPane;
 import org.jdesktop.swingx.error.ErrorInfo;
