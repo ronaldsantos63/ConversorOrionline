@@ -1039,6 +1039,7 @@ public class Principal extends javax.swing.JFrame {
                 String situacao;
                 String descricao;
                 String fracionado;
+                String referencia;
                 
                 //variavel ajudar a capiturar possíveis erros
                 String ultimoCodigoProduto = null;
@@ -1069,10 +1070,22 @@ public class Principal extends javax.swing.JFrame {
                         cdprod = cx.rs.getString("cdprod");
                         prodArq.setProcod(cdprod);
                         System.out.println("Campo 2");
+                        try {
+                            referencia = cx.rs.getString("referencia");
+                            if (referencia == null || referencia.trim().length() == 0) {
+                                referencia = "";
+                            }else{
+                                referencia = referencia.toUpperCase()
+                                        .replaceAll("[ÁÀÂÃáàâã]", "A").replaceAll("[ÉÈÊéèê]", "E").replaceAll("[ÍÌÎíìî]", "I")
+                                        .replaceAll("[ÓÒÔÕóòôõ]", "O").replaceAll("ÚÙÛúùû", "U").replaceAll("Çç", "C");
+                            }
+                        } catch (Exception e) {
+                            referencia = "";
+                        }
                         descricao = cx.rs.getString("descricao");
                         prodArq.setDescricao(descricao.toUpperCase()
                                 .replaceAll("[ÁÀÂÃáàâã]", "A").replaceAll("[ÉÈÊéèê]", "E").replaceAll("[ÍÌÎíìî]", "I")
-                                .replaceAll("[ÓÒÔÕóòôõ]", "O").replaceAll("ÚÙÛúùû", "U").replaceAll("Çç", "C"));
+                                .replaceAll("[ÓÒÔÕóòôõ]", "O").replaceAll("ÚÙÛúùû", "U").replaceAll("Çç", "C") + " - " + referencia);
                         System.out.println("Campo 3");
                         prodArq.setDescricaoReduzidsa(cx.rs.getString("descpdv").toUpperCase()
                                 .replaceAll("[ÁÀÂÃáàâã]", "A").replaceAll("[ÉÈÊéèê]", "E").replaceAll("[ÍÌÎíìî]", "I")
@@ -1286,7 +1299,7 @@ public class Principal extends javax.swing.JFrame {
                             prodArq.setCodigoGenero(genero.substring(0, 2));
                         }
                         System.out.println("Campo 62");
-                        prodArq.setComplementoDescProd(null);
+                        prodArq.setComplementoDescProd(referencia);
                         System.out.println("Campo 63");
                         prodArq.setReservado(null);
                         System.out.println("Campo 64");
