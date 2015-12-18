@@ -92,6 +92,10 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuPopup_secao = new javax.swing.JPopupMenu();
+        ItemMenuPopupDepto = new javax.swing.JRadioButtonMenuItem();
+        itemMenuPopupGrupo = new javax.swing.JRadioButtonMenuItem();
+        grupoOpcoesSecao = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         checkProdutos = new javax.swing.JCheckBox();
@@ -115,6 +119,18 @@ public class Principal extends javax.swing.JFrame {
         JProgresso = new javax.swing.JProgressBar();
         lbProcesso = new javax.swing.JLabel();
 
+        grupoOpcoesSecao.add(ItemMenuPopupDepto);
+        ItemMenuPopupDepto.setText("Departamento");
+        ItemMenuPopupDepto.setToolTipText("Esta opção pegar os dados do banco DEPTO da GZ");
+        ItemMenuPopupDepto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuPopup_secao.add(ItemMenuPopupDepto);
+
+        grupoOpcoesSecao.add(itemMenuPopupGrupo);
+        itemMenuPopupGrupo.setSelected(true);
+        itemMenuPopupGrupo.setText("Grupo");
+        itemMenuPopupGrupo.setToolTipText("Esta opção pegar os dados do banco GRUPO da GZ");
+        menuPopup_secao.add(itemMenuPopupGrupo);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OrionLine Automação Comercial");
         setResizable(false);
@@ -125,6 +141,11 @@ public class Principal extends javax.swing.JFrame {
 
         checkProdutos.setText("Produtos");
         checkProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkProdutosActionPerformed(evt);
+            }
+        });
 
         checkCodBarras.setText("Cod Barras");
         checkCodBarras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -136,7 +157,13 @@ public class Principal extends javax.swing.JFrame {
         checkFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         checkSecao.setText("Seção");
+        checkSecao.setComponentPopupMenu(menuPopup_secao);
         checkSecao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkSecao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkSecaoActionPerformed(evt);
+            }
+        });
 
         checkGrupo.setText("Grupo");
         checkGrupo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -460,6 +487,18 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkSecaoGeralActionPerformed
 
+    private void checkSecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSecaoActionPerformed
+
+    }//GEN-LAST:event_checkSecaoActionPerformed
+
+    private void checkProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkProdutosActionPerformed
+        if ( checkProdutos.isSelected() ){
+            checkSecao.setSelected(true);
+        }else{
+            checkSecao.setSelected(!true);
+        }
+    }//GEN-LAST:event_checkProdutosActionPerformed
+
     public String IncluirZeros(String texto, int tamMax){
         int max;
         int zeros;
@@ -474,6 +513,7 @@ public class Principal extends javax.swing.JFrame {
         return txt;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButtonMenuItem ItemMenuPopupDepto;
     private javax.swing.JProgressBar JProgresso;
     private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnSair;
@@ -492,10 +532,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkSecaoGeral;
     private javax.swing.JCheckBox checkSubGrupo;
     private javax.swing.JCheckBox checkTodos;
+    private javax.swing.ButtonGroup grupoOpcoesSecao;
+    private javax.swing.JRadioButtonMenuItem itemMenuPopupGrupo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbProcesso;
+    private javax.swing.JPopupMenu menuPopup_secao;
     // End of variables declaration//GEN-END:variables
     class ProcessarProgresso extends Thread {
 
@@ -1094,7 +1137,11 @@ public class Principal extends javax.swing.JFrame {
                         if ( checkSecaoGeral.isSelected() ){
                             prodArq.setCodSecao(01);
                         }else{
-                            prodArq.setCodSecao(cx.rs.getInt("grupo"));
+                            if ( itemMenuPopupGrupo.isSelected() ){
+                                prodArq.setCodSecao(cx.rs.getInt("grupo"));
+                            }else{
+                                prodArq.setCodSecao(cx.rs.getInt("depto"));
+                            }
                         }
                         System.out.println("Campo 5");
                         prodArq.setPagaComissao("N");
@@ -1358,8 +1405,14 @@ public class Principal extends javax.swing.JFrame {
                 List<Secao> secaoList = new ArrayList<Secao>();
                 cx.conexao();
                 cx2.conexao();
-                cx.executaQuery("select * from grupo");
-                cx2.executaQuery("select count(*) from grupo");
+                if (itemMenuPopupGrupo.isSelected()) {
+                    cx.executaQuery("select * from grupo");
+                    cx2.executaQuery("select count(*) from grupo");
+                } else {
+                    cx.executaQuery("select * from depto");
+                    cx2.executaQuery("select count(*) from depto");
+                }
+
                 try {
                     cx.rs.first();
                     cx2.rs.first();
